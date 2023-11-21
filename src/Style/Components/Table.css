@@ -1,0 +1,29 @@
+/* Estilo para a tabela */
+table {
+    border-collapse: collapse;
+    width: 95%;
+    margin: 30px 20px 30px 20px;
+}
+
+/* Estilo para as células */
+th,
+td {
+    border: 1px solid #000000;
+    padding: 8px;
+    text-align: left;
+}
+
+/* Estilo para o cabeçalho da tabela */
+th {
+    background-color: #f2f2f2;
+}
+
+/* Estilo para linhas alternadas */
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Estilo para hover nas linhas */
+tbody tr:hover {
+    background-color: #e5e5e5;
+}
