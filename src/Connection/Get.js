@@ -1,49 +1,22 @@
-import { Component } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-class MetodoGet extends Component {
-    constructor(props) {
-        super(props);
+const MetodoGet = (apiURL, params) => {
+    const [dados, setDados] = useState([]);
 
-        this.state = {
-            dados: null,
-            error: null
-        };
-    }
-
-    componentDidMount() {
-        // Use a URL passada nos parâmetros da classe
-        const { apiUrl } = this.props;
-
-        axios.get(apiUrl)
-            .then(response => {
-                this.setState({
-                    dados: response.data,
-                    error: null
-                });
+    useEffect(() => {
+        axios.get(apiURL)
+          .then(response => {
+                setDados(response.data.results);
             })
-            .catch(error => {
-                this.setState({
-                    dados: null,
-                    error: error.message
-                });
+          .catch(error => {
+                console.error(error);
             });
-    }
+    }, [apiURL, params]);
 
-    render() {
-        const { dados, error } = this.state;
+    console.log(dados)
 
-        if (error) {
-            console.log(`Erro NIC-0401: Erro na requisição. \n ${error.message}`);
-        }
-
-        if (!dados) {
-            console.log("Erro NIC-0500: Dados não encontrados.")
-        }
-
-        // Renderize os dados recebidos da API
-        return JSON.stringify(dados, null, 2)
-    }
+    return JSON.stringify(dados);
 }
 
 export default MetodoGet;
