@@ -1,48 +1,47 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import '../Style/Components/Form.css'
+import React, { useState, useContext, useEffect } from 'react';
+import '../Style/Components/Form.css';
+import { SearchContext } from '../Context/index'; // Certifique-se de importar o contexto correto
 
-class Form extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            formFilds: props.formFilds
-        };
-    }
 
-    handleInputChange = (e) => {
+const Form = (props) => {
+    const { dataSurvey, setDataSurvey } = useContext(SearchContext);
+    const [formValues, setFormValues] = useState(dataSurvey);
+
+    useEffect(() => {
+        setDataSurvey(formValues);
+    }, [setDataSurvey, formValues]);
+
+    const handleInputChange = (e) => {
         const { name, value } = e.target;
-        this.setState({ ...this.state, [name]: value });
-    }
+        setFormValues({
+            ...formValues,
+            [name]: value !== '' ? value : dataSurvey[name]
+        });
+    };
 
-    handleSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
+        setDataSurvey(formValues);
+        console.log(dataSurvey)
+    };
 
-    }
-
-    render() {
-        return (
-           <form id='form-container' onSubmit={this.handleSubmit}>
-                {this.state.formFilds.map((field, index) => (
-                    <div key={index}>
-                        <label htmlFor={field.name}>{field.label}</label>
-                        <input
-                            type={field.type}
-                            id={field.name}
-                            name={field.name}
-                            onChange={this.handleInputChange}
-                        />
-                    </div>
-                )) || 'Erro NIC-0100: Dados dos Input não reconhecidos.'}
-                <button type='submit'>Buscar</button>
-           </form>
-        );
-    }
-}
-
-// Declaração de Tipo
-Form.propTypes = {
-    formFilds: PropTypes.array
+    return (
+        <form id='form-container' onSubmit={handleSubmit}>
+            {props.form.map((field, index) => (
+                <div key={index}>
+                    <label htmlFor={field.name}>{field.label}</label>
+                    <input
+                        type={field.type}
+                        id={field.name}
+                        name={field.name}
+                        onChange={handleInputChange}
+                    />
+                </div>
+            ))}
+            {props.form.length === 0 && 'Erro NIC-0100: Dados dos Input não reconhecidos.'}
+            <button type='submit' onClick={(e) => { e.preventDefault(); setDataSurvey({...dataSurvey, busca: true})}}>Buscar</button>
+        </form>
+    );
 };
 
 export default Form;

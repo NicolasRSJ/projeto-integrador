@@ -1,8 +1,13 @@
 import React from "react";
-import { ConsultaMedicamento } from "./Views/Consulta_Medicamento";
-import axios from "axios";
-import MetodoGet from "./Connection/Get";
+import { Router } from "./Router/Router";
+import { BrowserRouter } from "react-router-dom";
 
-const App = () => <ConsultaMedicamento />
+function App() {
+  return (
+    <BrowserRouter basename="/pharmaconection">
+      <Router/>      
+    </BrowserRouter>
+  );
+}
 
 export default App;
