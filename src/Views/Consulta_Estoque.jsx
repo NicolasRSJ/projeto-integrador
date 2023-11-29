@@ -11,20 +11,10 @@ export const ConsultaEstoque = () => {
 
   const form = [
     {
-      label: "Código Remédio:",
+      label: "Código Medicamento:",
       type: "text",
       name: "codigo_medicamento",
-    },
-    {
-      label: "Código da Unidade:",
-      type: "text",
-      name: "id_unidade_atual",
-    },
-    {
-      label: "Quantidade:",
-      type: "text",
-      name: "quant_desejada",
-    },
+    }
   ];
 
   return (
@@ -32,7 +22,7 @@ export const ConsultaEstoque = () => {
       <Header nomeAba="Consulta Estoque"/>
       <Section>
         <Form form={form} />
-        <Table apiUrl="https://pokeapi.co/api/v2/pokemon/"/>
+        <Table apiUrl="http://localhost:3001/medicamentos/consultar_estoque/"/>
         <NavigationBar>
           <NavigationButton href='/consulta_medicamentos'>Consultar Medicamentos</NavigationButton>
           <NavigationButton href='/consulta_estoque_unidades'>Estoque das Unidades</NavigationButton>

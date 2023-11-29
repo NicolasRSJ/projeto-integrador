@@ -27,3 +27,38 @@ tbody tr:nth-child(even) {
 tbody tr:hover {
     background-color: #e5e5e5;
 }
+
+
+/* Estilos para a tabela de espera */
+.loading-table {
+    width: 100%;
+    max-width: 600px; /* Ajuste conforme necessário */
+    margin: 20px auto; /* Centraliza a tabela horizontalmente */
+  }
+  
+  .loading-table table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    background-color: #fff;
+  }
+  
+  .loading-table th,
+  .loading-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .loading-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  /* Estilizando o texto "Loading..." na tabela de espera */
+  .loading-table th:empty::before,
+  .loading-table td:empty::before {
+    content: 'Loading...';
+    color: #999;
+  }
+  

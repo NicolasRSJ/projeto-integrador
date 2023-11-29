@@ -13,13 +13,15 @@ const Table = (props) => {
             var params = '';
             if (props.apiUrl === 'http://localhost:3001/medicamentos/consultar/') {
                 params = dataSurvey.codigo_medicamento !== undefined ? dataSurvey.codigo_medicamento.toUpperCase() : dataSurvey.codigo_medicamento;
-            } else if (props.apiUrl === 'http://localhost:3001/medicamentos/outras_unidades/') {
+            } else if (props.apiUrl === 'http://localhost:3001/medicamentos/outras_unidades/' || props.apiUrl === 'http://localhost:3001/medicamentos/consultar_estoque/') {
                 params = `${dataSurvey.id_unidade_atual}/${dataSurvey.quant_desejada}/${
                     dataSurvey.codigo_medicamento !== undefined
                         ? dataSurvey.codigo_medicamento.toUpperCase()
                         : dataSurvey.codigo_medicamento
                 }`;
             } else return;
+
+            console.log(props.apiUrl + params)
 
             axios.get(props.apiUrl + params)
                 .then(resp => {
@@ -65,7 +67,7 @@ const Table = (props) => {
         }
     }, [dataSurvey, props.apiUrl])
 
-    const colunas = Object.keys(medicamentos[0] || {}).filter(coluna => !['id', 'createdAt', 'updatedAt'].includes(coluna));
+    const colunas = Object.keys(medicamentos[0] || {}).filter(coluna => !['id', 'createdAt', 'updatedAt', 'id_unidade_saude'].includes(coluna));
 
     return (
         <table>

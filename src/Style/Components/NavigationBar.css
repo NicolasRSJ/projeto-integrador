@@ -1,8 +1,9 @@
 #navigation-bar {
     width: 95%;
     height: auto;
+    min-height: 35px;
     padding: 10px 20px 10px 20px;
-    top: 0;
-    left: 0;
+    position: absolute;
+    bottom: 0;
     flex: 1;
 }

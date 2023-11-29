@@ -15,9 +15,19 @@ export const ConsultaEstoqueUnidades = () => {
 
   const form = [
     {
-      label: "Código Remédio:",
+      label: "Código Medicamento:",
       type: "text",
       name: "codigo_medicamento",
+    },
+    {
+      label: "Código da Unidade:",
+      type: "text",
+      name: "id_unidade_atual",
+    },
+    {
+      label: "Quantidade:",
+      type: "text",
+      name: "quant_desejada",
     },
   ];
 

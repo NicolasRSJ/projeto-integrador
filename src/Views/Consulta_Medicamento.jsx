@@ -15,7 +15,7 @@ export const ConsultaMedicamento = () => {
 
   const form = [
     {
-      label: "Código Remédio:",
+      label: "Código Medicamento:",
       type: "text",
       name: "codigo_medicamento",
     },
