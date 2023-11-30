@@ -9,7 +9,7 @@ export const Router = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/consulta_medicamentos" element={<ConsultaMedicamento />} />
+      <Route path="/consulta_medicamento" element={<ConsultaMedicamento />} />
       <Route path="/consulta_estoque" element={<ConsultaEstoque />} />
       <Route path="/consulta_estoque_unidades" element={<ConsultaEstoqueUnidades />} />
     </Routes>

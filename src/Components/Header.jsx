@@ -19,7 +19,7 @@ class Header extends Component {
                 <div className='header-content'>
                     <img src={logoPrefeitura} alt='Logo da Prefeitura de Vitória' className='header-content-img' />
                     <div className='header-content-info'>
-                        <p>Código do Posto: {this.state.codigo}</p>
+                        <p>Código da Unidade: {this.state.codigo}</p>
                         <p>Usuário: {this.state.usuario}</p>
                     </div>
                 </div>

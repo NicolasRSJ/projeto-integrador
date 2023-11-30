@@ -41,3 +41,10 @@
     margin-right: 10px;
     margin-bottom: 5px;
 }
+
+#status-message {
+    margin: 0px 0px 10px 20px;
+    color: red;
+    font-weight: 600;
+    text-align: center;
+}

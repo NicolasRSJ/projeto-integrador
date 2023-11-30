@@ -4,12 +4,23 @@ import { SearchContext } from '../Context/index'; // Certifique-se de importar o
 
 
 const Form = (props) => {
-    const { dataSurvey, setDataSurvey } = useContext(SearchContext);
+    const { dataSurvey, setDataSurvey, statusMessage, setStatusMessage } = useContext(SearchContext);
     const [formValues, setFormValues] = useState(dataSurvey);
 
     useEffect(() => {
         setDataSurvey(formValues);
-    }, [setDataSurvey, formValues]);
+
+        if(statusMessage) {
+            const timeout = setTimeout(() => {
+                setStatusMessage(!statusMessage)
+            }, 3000);
+    
+            console.log(timeout);
+    
+            return () => clearTimeout(timeout);
+        }
+
+    }, [setDataSurvey, formValues,statusMessage, setStatusMessage]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -22,8 +33,14 @@ const Form = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setDataSurvey(formValues);
-        console.log(dataSurvey)
+        setDataSurvey({ ...dataSurvey, busca: true })
     };
+
+    const handleStatusMessage = () => {
+        if (statusMessage) {
+            return <p id="status-message">Medicamento não encontrado!</p>
+        }
+    }
 
     return (
         <form id='form-container' onSubmit={handleSubmit}>
@@ -39,7 +56,8 @@ const Form = (props) => {
                 </div>
             ))}
             {props.form.length === 0 && 'Erro NIC-0100: Dados dos Input não reconhecidos.'}
-            <button type='submit' onClick={(e) => { e.preventDefault(); setDataSurvey({...dataSurvey, busca: true})}}>Buscar</button>
+            <button type='submit'>Buscar</button>
+            {statusMessage ? handleStatusMessage() : null }
         </form>
     );
 };

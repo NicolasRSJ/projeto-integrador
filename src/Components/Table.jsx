@@ -5,7 +5,7 @@ import { SearchContext } from '../Context'
 import axios from 'axios';
 
 const Table = (props) => {
-    const { dataSurvey } = useContext(SearchContext)
+    const { dataSurvey, statusMessage, setStatusMessage } = useContext(SearchContext)
     const [medicamentos, setMedicamento] = useState([])
 
     useEffect(() => {
@@ -21,49 +21,19 @@ const Table = (props) => {
                 }`;
             } else return;
 
-            console.log(props.apiUrl + params)
-
             axios.get(props.apiUrl + params)
                 .then(resp => {
-                    if (resp.data.length > 0) {
-                        setMedicamento(resp.data)
-                    } else {
-                        setMedicamento([
-                            {
-                                id: undefined,
-                                codigo: undefined,
-                                nome: undefined,
-                                dosagem: undefined,
-                                forma_farmaceutica: undefined,
-                                custo: undefined
-                            },
-                        ]);
+                    if (resp.data.length === 0) {
+                        setStatusMessage(!statusMessage)
                     }
+                    setMedicamento(resp.data)
+                    console.log(resp)
                 })
                 .catch(err => {
                     console.log(err.message);
-                    setMedicamento([
-                        {
-                            id: undefined,
-                            codigo: undefined,
-                            nome: undefined,
-                            dosagem: undefined,
-                            forma_farmaceutica: undefined,
-                            custo: undefined
-                        },
-                    ]);
                 })
         } else {
-            setMedicamento([
-                {
-                    id: undefined,
-                    codigo: undefined,
-                    nome: undefined,
-                    dosagem: undefined,
-                    forma_farmaceutica: undefined,
-                    custo: undefined
-                },
-            ]);
+            setMedicamento([]);
         }
     }, [dataSurvey, props.apiUrl])
 

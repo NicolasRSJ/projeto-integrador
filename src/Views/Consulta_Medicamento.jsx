@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import Container from '../Components/Container'
 import Header from '../Components/Header'
 import Section from '../Components/Section'
@@ -11,7 +11,7 @@ import { SearchContext } from '../Context'
 
 export const ConsultaMedicamento = () => {
 
-  const { dataSurvey, setDataSurvey } = useContext(SearchContext)
+  const { setStatusMessage } = useContext(SearchContext)
 
   const form = [
     {
@@ -26,10 +26,10 @@ export const ConsultaMedicamento = () => {
       <Header nomeAba="Consulta Medicamentos" />
       <Section>
         <Form form={form} />
-        <Table apiUrl="http://localhost:3001/medicamentos/consultar/"/>
+        <Table apiUrl="http://localhost:3001/medicamentos/consultar/" />
         <NavigationBar>
-          <NavigationButton href='/consulta_estoque' func={() => setDataSurvey({...dataSurvey, busca: false })} >Consultar Estoque</NavigationButton>
-          <NavigationButton href='/consulta_estoque_unidades'>Estoque das Unidades</NavigationButton>
+          <NavigationButton href='/consulta_estoque' >Consultar no Estoque</NavigationButton>
+          <NavigationButton href='/consulta_estoque_unidades' >Consultar nas Unidades</NavigationButton>
         </NavigationBar>
       </Section>
     </Container>

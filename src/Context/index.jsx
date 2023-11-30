@@ -10,8 +10,10 @@ export const SearchProvider = ({ children }) => {
         busca: false
     })
 
+    const [statusMessage, setStatusMessage] = useState(false);
+
     return (
-        <SearchContext.Provider value={{ dataSurvey, setDataSurvey }}>
+        <SearchContext.Provider value={{ dataSurvey, setDataSurvey, statusMessage, setStatusMessage }}>
             {children}
         </SearchContext.Provider>
 

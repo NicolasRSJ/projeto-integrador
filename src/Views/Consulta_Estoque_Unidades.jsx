@@ -11,7 +11,7 @@ import { SearchContext } from '../Context'
 
 export const ConsultaEstoqueUnidades = () => {
 
-  const { dataSurvey, setDataSurvey } = useContext(SearchContext)
+  const { dataSurvey, setDataSurvey, setStatusMessage } = useContext(SearchContext)
 
   const form = [
     {
@@ -38,8 +38,8 @@ export const ConsultaEstoqueUnidades = () => {
         <Form form={form} />
         <Table apiUrl="http://localhost:3001/medicamentos/outras_unidades/" />
         <NavigationBar>
-          <NavigationButton href='/consulta_estoque'>Consultar Estoque</NavigationButton>
-          <NavigationButton href='/consulta_medicamentos' func={ () => setDataSurvey({...dataSurvey, busca: false}) }>Consultar Medicamentos</NavigationButton>
+          <NavigationButton href='/consulta_estoque' func={() => { setStatusMessage(false); setDataSurvey({ ...dataSurvey, busca: false }); }} >Consultar Estoque</NavigationButton>
+          <NavigationButton href='/consulta_medicamento' func={() => { setStatusMessage(false); setDataSurvey({ ...dataSurvey, busca: false }); }} >Consultar um Medicamentos</NavigationButton>
         </NavigationBar>
       </Section>
     </Container>
