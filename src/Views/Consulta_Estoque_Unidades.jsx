@@ -24,11 +24,6 @@ export const ConsultaEstoqueUnidades = () => {
       type: "text",
       name: "id_unidade_atual",
     },
-    {
-      label: "Quantidade:",
-      type: "text",
-      name: "quant_desejada",
-    },
   ];
 
   return (

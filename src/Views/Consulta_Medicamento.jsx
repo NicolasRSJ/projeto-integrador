@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import Container from '../Components/Container'
 import Header from '../Components/Header'
 import Section from '../Components/Section'
@@ -6,12 +6,8 @@ import Form from '../Components/Form'
 import Table from '../Components/Table'
 import NavigationBar from '../Components/NavigationBar'
 import NavigationButton from '../Components/NavigationButton'
-import { useContext } from 'react'
-import { SearchContext } from '../Context'
 
 export const ConsultaMedicamento = () => {
-
-  const { setStatusMessage } = useContext(SearchContext)
 
   const form = [
     {

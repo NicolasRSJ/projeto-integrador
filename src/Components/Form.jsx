@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import '../Style/Components/Form.css';
-import { SearchContext } from '../Context/index'; // Certifique-se de importar o contexto correto
+import { SearchContext } from '../Context/index';
 
 
 const Form = (props) => {
@@ -12,15 +12,13 @@ const Form = (props) => {
 
         if(statusMessage) {
             const timeout = setTimeout(() => {
-                setStatusMessage(!statusMessage)
-            }, 3000);
-    
-            console.log(timeout);
-    
+                setStatusMessage(false);
+            }, 5000);
+            
             return () => clearTimeout(timeout);
         }
 
-    }, [setDataSurvey, formValues,statusMessage, setStatusMessage]);
+    }, [setDataSurvey, formValues, statusMessage, setStatusMessage]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -46,7 +44,7 @@ const Form = (props) => {
         <form id='form-container' onSubmit={handleSubmit}>
             {props.form.map((field, index) => (
                 <div key={index}>
-                    <label htmlFor={field.name}>{field.label}</label>
+                    <label htmlFor={field.name}><strong>{field.label}</strong></label>
                     <input
                         type={field.type}
                         id={field.name}

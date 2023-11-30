@@ -24,7 +24,7 @@ const Table = (props) => {
             axios.get(props.apiUrl + params)
                 .then(resp => {
                     if (resp.data.length === 0) {
-                        setStatusMessage(!statusMessage)
+                        setStatusMessage(true)
                     }
                     setMedicamento(resp.data)
                     console.log(resp)
@@ -37,6 +37,26 @@ const Table = (props) => {
         }
     }, [dataSurvey, props.apiUrl])
 
+    const columnMapping = {
+        codigo_medicamento: 'Código Medicamento',
+        qtd_recomendada: 'Quantidade Recomendada',
+        qtd_atual: 'Quantidade Atual',
+        local_armazenado: 'Local Armazenado',
+        codigo: 'Código',
+        nome: 'Nome',
+        dosagem: 'Dosagem',
+        forma_farmaceutica: 'Forma Farmaceutica',
+        nome_fabricante: 'Nome Fabricante',
+        custo: 'Custo',
+        nome_unidade: 'Nome da Unidade',
+        cep: 'CEP',
+        endereco: 'Endereço',
+        numero_endereco: 'Nº',
+        telefone: 'Telefone',
+        tipo_unidade: 'Tipo de Unidade',
+        horario_funcionamento: 'Horário de Funcionamento',
+    };
+
     const colunas = Object.keys(medicamentos[0] || {}).filter(coluna => !['id', 'createdAt', 'updatedAt', 'id_unidade_saude'].includes(coluna));
 
     return (
@@ -44,7 +64,7 @@ const Table = (props) => {
             <thead>
                 <tr>
                     {colunas.map(coluna => (
-                        <th key={coluna}>{coluna}</th>
+                        <th key={coluna}>{columnMapping[coluna] || coluna}</th>
                     ))}
                 </tr>
             </thead>

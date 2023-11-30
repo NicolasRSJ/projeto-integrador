@@ -29,7 +29,7 @@ export const ConsultaEstoque = () => {
         <Table apiUrl="http://localhost:3001/medicamentos/consultar_estoque/" />
         <NavigationBar>
           <NavigationButton href='/consulta_medicamento' func={() => { setStatusMessage(false); setDataSurvey({ ...dataSurvey, busca: false }) }} >Consultar um Medicamentos</NavigationButton>
-          <NavigationButton href='/consulta_estoque_unidades'>Consultar nas Unidades Próximas</NavigationButton>
+          <NavigationButton href='/consulta_estoque_unidades' >Consultar nas Unidades Próximas</NavigationButton>
         </NavigationBar>
       </Section>
     </Container>
